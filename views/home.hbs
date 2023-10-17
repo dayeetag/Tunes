@@ -1,0 +1,29 @@
+<main>
+    {{#each music}}
+    <div class="music">
+        <div style="width: 20vw; display:flex; justify-content:center;">
+            <img src={{this.picture}} />
+        </div>
+        <div style="width: 50vw;display: flex; flex-direction: column; justify-content:space-evenly">
+            <p>Song Title: {{this.title}}</p>
+            <p>Artist: {{this.artist}}</p>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content:space-evenly;">
+            <form action="/add-song/{{this.track_id}}" method="post">
+                {{#if ../playlist}}
+                <select name="playlist">
+                    <option selected disabled>Select Playlist</option>
+                    {{#each ../playlist}}
+                    <option value="{{this.playlist_id}}">{{this.playlist_name}}</option>
+                    {{/each}}
+                </select>
+                <button type="submit">Add To Playlist</button>
+                {{else}}
+                <p>Create a playlist first!</p>
+                <button type="submit" disabled>Add To Playlist</button>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+    {{/each}}
+</main>

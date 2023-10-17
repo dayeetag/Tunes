@@ -1,0 +1,27 @@
+<main>
+    <center><a href="/playlist?createPlaylist=true" class="create_playlist">Create a Playlist</a></center>
+    {{#if createPlaylist}}
+        <form action="/create-playlist" method="post">
+            <label>Playlist name: </label><input type="text" name="playlist_name" required>
+            <button type="submit">CREATE</button>
+        </form>
+    {{/if}}
+    {{#if playlist}}
+        {{#each playlist}}
+            <div class="music">
+                <div style="width: 50vw;">
+                    <a href="/playlistDescription/{{this.playlist_id}}">{{this.playlist_name}}</a>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content:center">
+                    <form action="/delete-playlist/{{this.playlist_id}}" method="post">
+                        <button type="submit">DELETE</button>
+                    </form>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="music">
+            <p>No playlists available. Create one now!</p>
+        </div>
+    {{/if}}
+</main>

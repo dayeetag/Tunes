@@ -1,0 +1,22 @@
+<main>
+    <h2>{{playlistName}}</h2>
+    {{#if tracks}}
+        {{#each tracks}}
+            <div class="music">
+                <div style="width: 50vw;">
+                    <p>{{this.title}}</p>
+                    <p>{{playlistID}}</p>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content:center">
+                    <form action="/delete-song/{{this.playlist_id}}/{{this.unique_id}}" method="post">
+                        <button type="submit">DELETE</button>
+                    </form>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="music">
+            <p>No songs added to playlist!</p>
+        </div>
+    {{/if}}
+</main>
